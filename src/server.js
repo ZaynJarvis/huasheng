@@ -10,7 +10,13 @@ const publicDir = path.resolve(__dirname, "../public");
 const contentTypes = new Map([
   [".css", "text/css; charset=utf-8"],
   [".html", "text/html; charset=utf-8"],
+  [".js", "text/javascript; charset=utf-8"],
+  [".jsx", "text/jsx; charset=utf-8"],
+  [".json", "application/json; charset=utf-8"],
+  [".pdf", "application/pdf"],
+  [".png", "image/png"],
   [".svg", "image/svg+xml; charset=utf-8"],
+  [".webp", "image/webp"],
 ]);
 
 async function serveFile(response, filePath) {
@@ -29,9 +35,7 @@ async function serveFile(response, filePath) {
       "application/octet-stream";
 
     response.writeHead(200, {
-      "cache-control": filePath.endsWith(".html")
-        ? "public, max-age=0, must-revalidate"
-        : "public, max-age=31536000, immutable",
+      "cache-control": "public, max-age=0, must-revalidate",
       "content-type": contentType,
     });
     response.end(body);

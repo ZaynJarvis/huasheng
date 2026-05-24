@@ -1,6 +1,7 @@
-# Huasheng
+# HuaSheng Metal Website
 
-Minimal Node.js app prepared for Railway deployment.
+Static website for Guangzhou HuaSheng Metal Materials, served by a minimal
+Node.js server for Railway.
 
 ## Local Development
 
@@ -8,4 +9,5 @@ Minimal Node.js app prepared for Railway deployment.
 npm start
 ```
 
-The server listens on `PORT` when provided, or `3000` by default.
+The server listens on `PORT` when provided, or `3000` by default. Site assets
+live in `public/`.
