@@ -1,16 +1,61 @@
+import { readFile } from "node:fs/promises";
 import http from "node:http";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const port = Number(process.env.PORT || 3000);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicDir = path.resolve(__dirname, "../public");
 
-const server = http.createServer((request, response) => {
+const contentTypes = new Map([
+  [".css", "text/css; charset=utf-8"],
+  [".html", "text/html; charset=utf-8"],
+  [".svg", "image/svg+xml; charset=utf-8"],
+]);
+
+async function serveFile(response, filePath) {
+  const resolvedPath = path.resolve(publicDir, filePath);
+
+  if (!resolvedPath.startsWith(publicDir)) {
+    response.writeHead(403);
+    response.end("Forbidden");
+    return;
+  }
+
+  try {
+    const body = await readFile(resolvedPath);
+    const contentType =
+      contentTypes.get(path.extname(resolvedPath)) ||
+      "application/octet-stream";
+
+    response.writeHead(200, {
+      "cache-control": filePath.endsWith(".html")
+        ? "public, max-age=0, must-revalidate"
+        : "public, max-age=31536000, immutable",
+      "content-type": contentType,
+    });
+    response.end(body);
+  } catch {
+    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+    response.end("Not found\n");
+  }
+}
+
+const server = http.createServer(async (request, response) => {
   if (request.url === "/health") {
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify({ ok: true }));
     return;
   }
 
-  response.writeHead(200, { "content-type": "text/plain; charset=utf-8" });
-  response.end("Huasheng is running.\n");
+  const url = new URL(request.url || "/", `http://${request.headers.host}`);
+
+  if (url.pathname === "/") {
+    await serveFile(response, "index.html");
+    return;
+  }
+
+  await serveFile(response, url.pathname.slice(1));
 });
 
 server.listen(port, "0.0.0.0", () => {

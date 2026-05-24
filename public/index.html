@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Hua Sheng is live on its custom domain."
+    />
+    <title>Hua Sheng</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Hua Sheng home">
+        <img src="/mark.svg" alt="" width="34" height="34" />
+        <span>Hua Sheng</span>
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Live at hua-sheng.org</p>
+          <h1 id="hero-title">A clear home for Hua Sheng.</h1>
+          <p class="lede">
+            The domain is connected, the service is deployed, and this page is
+            ready to grow into the project behind it.
+          </p>
+          <div class="actions" aria-label="Primary actions">
+            <a class="button primary" href="#work">View Status</a>
+            <a class="button secondary" href="mailto:hello@hua-sheng.org">
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <img src="/mark.svg" alt="" />
+          <div class="signal-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-band" id="work" aria-label="Deployment status">
+        <article>
+          <span class="status-dot"></span>
+          <div>
+            <h2>Deployment Active</h2>
+            <p>Railway is serving this site from the GitHub repository.</p>
+          </div>
+        </article>
+        <article>
+          <span class="status-dot"></span>
+          <div>
+            <h2>Custom Domain Connected</h2>
+            <p>HTTPS traffic is reaching the Hua Sheng service.</p>
+          </div>
+        </article>
+        <article>
+          <span class="status-dot"></span>
+          <div>
+            <h2>Health Check Ready</h2>
+            <p>The service exposes <code>/health</code> for uptime checks.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <span>Hua Sheng</span>
+      <a href="mailto:hello@hua-sheng.org">hello@hua-sheng.org</a>
+    </footer>
+  </body>
+</html>
