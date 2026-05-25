@@ -5,7 +5,7 @@
 
   const CASE_IMAGES = [
     "assets/huasheng/case-guangzhou-1993.webp",
-    "assets/huasheng/case-shanghai-shelter.webp",
+    "assets/huasheng/case-shanghai-expo-v2.webp",
     "assets/huasheng/case-hangzhou-bicycle.webp",
     "assets/huasheng/case-erdos-shelter.webp",
     "assets/huasheng/case-qatar-shelter.webp",
@@ -13,9 +13,9 @@
     "assets/huasheng/case-nepal-government.webp",
     "assets/huasheng/case-new-zealand-postal.webp",
     "assets/huasheng/case-oman-public.webp",
-    "assets/huasheng/case-korea-aluminum.webp",
+    "assets/huasheng/case-korea-aluminum-v2.webp",
     "assets/huasheng/case-romania-signpost.webp",
-    "assets/huasheng/case-saudi-kiosk.webp",
+    "assets/huasheng/case-riyadh-shelter-v2.webp",
     "assets/huasheng/case-turkey-turkmenistan.webp",
     "assets/huasheng/case-steel-structure.webp",
     "assets/huasheng/case-oem-kitchen-cart.webp",
@@ -54,7 +54,7 @@
         <section className="tight">
           <div className="container">
             <div className="case-hero reveal">
-              <ImgSlot src="assets/huasheng/case-beijing-olympic.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭" : "Beijing Olympics stainless steel shelter"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
+              <ImgSlot src="assets/huasheng/case-beijing-olympic-v2.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭" : "Beijing Olympics stainless steel shelter"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
               <div className="case-hero-text">
                 <Eyebrow>{lang === "cn" ? "重点案例" : "Featured project"}</Eyebrow>
                 <h3>{c.featured.title}</h3>

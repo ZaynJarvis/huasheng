@@ -83,7 +83,7 @@
             <div className="featured-grid reveal">
               <div className="featured-main">
                 <article className="featured-card">
-                  <ImgSlot src="assets/huasheng/featured-beijing-shelter.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭项目" : "Beijing Olympics stainless steel shelter project"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
+                  <ImgSlot src="assets/huasheng/featured-beijing-shelter-v2.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭项目" : "Beijing Olympics stainless steel shelter project"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
                   <div className="featured-meta">
                     <div className="top">
                       <span className="pin">●</span>
