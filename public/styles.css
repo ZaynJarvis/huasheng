@@ -906,6 +906,37 @@ body[data-theme="clarity"] .dmaic-step .letter { font-weight: 700; }
 body[data-theme="clarity"] .cert-card h4 { font-weight: 600; }
 .cert-card p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
 
+.doc-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.doc-card {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.doc-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #f7f7f3;
+}
+.doc-card figcaption {
+  padding: 14px 16px 16px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 1100px) { .doc-gallery { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 780px) { .doc-gallery { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (max-width: 520px) { .doc-gallery { grid-template-columns: 1fr; } }
+
 /* =============================================================
    Contact page
    ============================================================= */
@@ -961,4 +992,3 @@ body[data-theme="clarity"] .form-success h3 { font-weight: 600; }
   color: #fff;
 }
 body[data-theme="heritage"] .check-mark { color: #0f1216; }
-

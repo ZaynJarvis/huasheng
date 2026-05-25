@@ -2,6 +2,54 @@
 (() => {
   const { ImgSlot, Eyebrow, SectionHead, CTABlock } = window.HSUI;
 
+  const QUALITY_DOCS = [
+    {
+      src: "assets/huasheng/quality-docs/business-license-metal.webp",
+      cn: "华盛金属营业执照",
+      en: "HuaSheng Metal business licence",
+    },
+    {
+      src: "assets/huasheng/quality-docs/iso-9001-cn.webp",
+      cn: "ISO 9001 质量管理体系认证",
+      en: "ISO 9001 quality management certification",
+    },
+    {
+      src: "assets/huasheng/quality-docs/business-license-trade.webp",
+      cn: "华盛工贸营业执照",
+      en: "HuaSheng Industry & Trade business licence",
+    },
+    {
+      src: "assets/huasheng/quality-docs/iso-9001-en.webp",
+      cn: "ISO 9001 英文认证文件",
+      en: "ISO 9001 English certificate",
+    },
+    {
+      src: "assets/huasheng/quality-docs/safety-permit.webp",
+      cn: "安全生产许可",
+      en: "Work safety permit",
+    },
+    {
+      src: "assets/huasheng/quality-docs/innovation-enterprise.webp",
+      cn: "科技创新小巨人企业证书",
+      en: "Technology innovation enterprise certificate",
+    },
+    {
+      src: "assets/huasheng/quality-docs/qualification-certificate.webp",
+      cn: "企业资质证书",
+      en: "Enterprise qualification certificate",
+    },
+    {
+      src: "assets/huasheng/quality-docs/approval-certificate.webp",
+      cn: "批准证书",
+      en: "Certificate of approval",
+    },
+    {
+      src: "assets/huasheng/quality-docs/quality-approval.webp",
+      cn: "质量体系认可文件",
+      en: "Quality system approval document",
+    },
+  ];
+
   function Quality({ t, lang, setRoute }) {
     const q = t.quality;
     const go = (id) => { setRoute(id); window.scrollTo({ top: 0, behavior: "instant" }); };
@@ -16,7 +64,7 @@
                 <p className="lede reveal">{q.hero.sub}</p>
               </div>
               <div className="page-hero-media reveal">
-                <ImgSlot label={lang === "cn" ? "ISO 9001 证书 · 占位" : "ISO 9001 certificate · placeholder"} />
+                <ImgSlot src="assets/huasheng/quality-control.webp" alt={lang === "cn" ? "金属制造质量检验与认证流程" : "Metal manufacturing quality control and certification process"} label={lang === "cn" ? "质量检验" : "Quality control"} />
               </div>
             </div>
           </div>
@@ -69,6 +117,24 @@
                     <p>{c.d}</p>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="container-wide">
+            <SectionHead
+              eyebrow={lang === "cn" ? "原始文件" : "Original documents"}
+              title={lang === "cn" ? "从公司资料中提取的真实证书" : "Real certificates extracted from company materials"}
+              lede={lang === "cn" ? "以下图片保留原始文件比例，仅做裁边、高清化与轻量锐化处理。" : "These images preserve the original document ratios, with only trimming, upscaling and light sharpening applied."}
+            />
+            <div className="doc-gallery reveal">
+              {QUALITY_DOCS.map((doc) => (
+                <figure className="doc-card" key={doc.src}>
+                  <img src={doc.src} alt={lang === "cn" ? doc.cn : doc.en} loading="lazy" />
+                  <figcaption>{lang === "cn" ? doc.cn : doc.en}</figcaption>
+                </figure>
               ))}
             </div>
           </div>

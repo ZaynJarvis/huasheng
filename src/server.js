@@ -6,6 +6,15 @@ import { fileURLToPath } from "node:url";
 const port = Number(process.env.PORT || 3000);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(__dirname, "../public");
+const appRoutes = new Set([
+  "/",
+  "/about",
+  "/capabilities",
+  "/projects",
+  "/cases",
+  "/quality",
+  "/contact",
+]);
 
 const contentTypes = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -54,7 +63,7 @@ const server = http.createServer(async (request, response) => {
 
   const url = new URL(request.url || "/", `http://${request.headers.host}`);
 
-  if (url.pathname === "/") {
+  if (appRoutes.has(url.pathname)) {
     await serveFile(response, "index.html");
     return;
   }

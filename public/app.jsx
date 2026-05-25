@@ -4,6 +4,22 @@
 const { useState, useEffect, useRef, useMemo, useCallback } = React;
 const { TweaksPanel, TweakSection, TweakRadio, useTweaks: useTweaksHook } = window;
 
+const ROUTE_PATHS = {
+  home: "/",
+  about: "/about",
+  capabilities: "/capabilities",
+  cases: "/projects",
+  quality: "/quality",
+  contact: "/contact",
+};
+
+function routeFromPath(pathname) {
+  const found = Object.entries(ROUTE_PATHS).find(([, path]) => path === pathname);
+  if (found) return found[0];
+  if (pathname === "/cases") return "cases";
+  return "home";
+}
+
 // ---------- Reveal-on-scroll hook ----------
 function useReveal() {
   useEffect(() => {
@@ -78,7 +94,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
       <header className={"site-header" + (scrolled ? " scrolled" : "")}>
         <div className="container-wide nav-inner">
           <a className="brand" href="#" onClick={(e) => { e.preventDefault(); go("home"); }} data-comment-anchor="brand">
-            <span className="brand-mark"><img src="assets/logo.png" alt="HuaSheng" /></span>
+            <span className="brand-mark"><img src="assets/logo.png?v=huasheng-logo-20260525" alt="HuaSheng" /></span>
             <span className="brand-text">
               <span className="a">{t.brand.short}</span>
               <span className="b">{lang === "cn" ? "HUASHENG · 1989" : "Est. 1989 · Guangzhou"}</span>
@@ -148,7 +164,7 @@ function Footer({ lang, t, setRoute }) {
         <div className="footer-grid">
           <div className="footer-col brand-col">
             <a className="brand" href="#" onClick={(e) => { e.preventDefault(); go("home"); }} style={{ marginBottom: 20 }}>
-              <span className="brand-mark"><img src="assets/logo.png" alt="HuaSheng" /></span>
+              <span className="brand-mark"><img src="assets/logo.png?v=huasheng-logo-20260525" alt="HuaSheng" /></span>
               <span className="brand-text">
                 <span className="a">{t.brand.short}</span>
                 <span className="b">{lang === "cn" ? "广州 · 1989" : "Guangzhou · 1989"}</span>
@@ -173,6 +189,7 @@ function Footer({ lang, t, setRoute }) {
               <li>{t.contact.info.contact.v}</li>
               <li>{t.contact.info.phone.v}</li>
               <li>{t.contact.info.email.v}</li>
+              <li>{t.contact.info.hours.v}</li>
               <li>{t.contact.info.addr.v}</li>
             </ul>
           </div>
@@ -198,7 +215,7 @@ function Footer({ lang, t, setRoute }) {
 // ---------- Tweaks ----------
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "clarity",
-  "lang": "cn",
+  "lang": "en",
   "accent": "default"
 }/*EDITMODE-END*/;
 
@@ -230,10 +247,25 @@ function PageHost({ routeKey, children }) {
 function App() {
   const [values, setTweak] = useTweaksHook ? useTweaksHook(TWEAK_DEFAULTS) : [TWEAK_DEFAULTS, () => {}];
 
-  const [route, setRoute] = useState("home");
+  const [route, setRouteState] = useState(() => routeFromPath(window.location.pathname));
   const [openMenu, setOpenMenu] = useState(false);
   const lang = values.lang || "cn";
   const theme = values.theme || "heritage";
+
+  const setRoute = useCallback((id) => {
+    const next = ROUTE_PATHS[id] || "/";
+    if (window.location.pathname !== next) {
+      window.history.pushState({ route: id }, "", next);
+    }
+    setRouteState(id);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
+  useEffect(() => {
+    const onPopState = () => setRouteState(routeFromPath(window.location.pathname));
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   // Sync to body attrs (so CSS theme vars take effect)
   useEffect(() => {

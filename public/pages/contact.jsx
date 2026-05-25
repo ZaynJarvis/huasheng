@@ -21,7 +21,7 @@
                 <p className="lede reveal">{c.hero.sub}</p>
               </div>
               <div className="page-hero-media reveal">
-                <ImgSlot label={lang === "cn" ? "厂区入口 · 占位" : "Factory entrance · placeholder"} />
+                <ImgSlot src="assets/huasheng/contact-factory-entrance.webp" alt={lang === "cn" ? "华盛金属厂区入口" : "HuaSheng Metal factory entrance"} label={lang === "cn" ? "厂区入口" : "Factory entrance"} />
               </div>
             </div>
           </div>
@@ -77,11 +77,11 @@
                       </div>
                       <div className="field">
                         <label>{c.form.fields.email}</label>
-                        <input type="email" required value={form.email} onChange={update("email")} placeholder="name@company.com" />
+                        <input type="email" required aria-required="true" value={form.email} onChange={update("email")} placeholder="name@company.com" />
                       </div>
                       <div className="field">
                         <label>{c.form.fields.phone}</label>
-                        <input value={form.phone} onChange={update("phone")} placeholder="+86 ..." />
+                        <input value={form.phone} onChange={update("phone")} placeholder="+65 ..." />
                       </div>
                       <div className="field">
                         <label>{c.form.fields.country}</label>

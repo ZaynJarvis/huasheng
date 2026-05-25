@@ -3,12 +3,34 @@
   const { ImgSlot, Eyebrow, SectionHead, CTABlock } = window.HSUI;
   const { useState } = React;
 
+  const CASE_IMAGES = [
+    "assets/huasheng/case-guangzhou-1993.webp",
+    "assets/huasheng/case-shanghai-shelter.webp",
+    "assets/huasheng/case-hangzhou-bicycle.webp",
+    "assets/huasheng/case-erdos-shelter.webp",
+    "assets/huasheng/case-qatar-shelter.webp",
+    "assets/huasheng/case-hong-kong-mtr.webp",
+    "assets/huasheng/case-nepal-government.webp",
+    "assets/huasheng/case-new-zealand-postal.webp",
+    "assets/huasheng/case-oman-public.webp",
+    "assets/huasheng/case-korea-aluminum.webp",
+    "assets/huasheng/case-romania-signpost.webp",
+    "assets/huasheng/case-saudi-kiosk.webp",
+    "assets/huasheng/case-turkey-turkmenistan.webp",
+    "assets/huasheng/case-steel-structure.webp",
+    "assets/huasheng/case-oem-kitchen-cart.webp",
+    "assets/huasheng/case-oem-cabinets.webp",
+    "assets/huasheng/case-oem-bathroom-rack.webp",
+    "assets/huasheng/case-oem-shelving.webp",
+  ];
+
   function Cases({ t, lang, setRoute }) {
     const c = t.cases;
     const [filter, setFilter] = useState(c.filters[0]);
+    const allItems = c.items.map((it, index) => ({ ...it, image: CASE_IMAGES[index] }));
     const items = filter === c.filters[0]
-      ? c.items
-      : c.items.filter((it) => it.cat === filter);
+      ? allItems
+      : allItems.filter((it) => it.cat === filter);
     const go = (id) => { setRoute(id); window.scrollTo({ top: 0, behavior: "instant" }); };
 
     return (
@@ -22,7 +44,7 @@
                 <p className="lede reveal">{c.hero.sub}</p>
               </div>
               <div className="page-hero-media reveal">
-                <ImgSlot src="assets/project-shelter-hero.png" label={lang === "cn" ? "项目实拍" : "Project photo"} />
+                <ImgSlot src="assets/huasheng/projects-overview.webp" alt={lang === "cn" ? "华盛公交候车亭项目部署图" : "HuaSheng bus shelter project deployment"} label={lang === "cn" ? "项目实拍" : "Project photo"} />
               </div>
             </div>
           </div>
@@ -32,7 +54,7 @@
         <section className="tight">
           <div className="container">
             <div className="case-hero reveal">
-              <ImgSlot src="assets/project-shelter-hero.png" label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
+              <ImgSlot src="assets/huasheng/case-beijing-olympic.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭" : "Beijing Olympics stainless steel shelter"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
               <div className="case-hero-text">
                 <Eyebrow>{lang === "cn" ? "重点案例" : "Featured project"}</Eyebrow>
                 <h3>{c.featured.title}</h3>
@@ -72,7 +94,7 @@
             <div className="case-grid reveal">
               {items.map((it, i) => (
                 <article className="case-card" key={it.title + i}>
-                  <ImgSlot label={(lang === "cn" ? "占位 · " : "Placeholder · ") + it.title} />
+                  <ImgSlot src={it.image} alt={it.title} label={it.title} />
                   <div className="case-card-body">
                     <div className="cat">{it.cat}</div>
                     <h4>{it.title}</h4>

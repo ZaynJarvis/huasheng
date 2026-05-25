@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div className="home-hero-media reveal">
-                <ImgSlot src="assets/project-shelter-hero.png" alt={lang === "cn" ? "华盛公交候车亭项目实拍" : "HuaSheng bus shelter project"} />
+                <ImgSlot src="assets/huasheng/hero-bus-shelter-deployed.webp" alt={lang === "cn" ? "华盛公交候车亭城市部署图" : "HuaSheng bus shelter deployed in an urban street"} />
                 <div className="corner">
                   {lang === "cn"
                     ? <React.Fragment>建过的金属<br/>遍布 40+ 国家</React.Fragment>
@@ -83,7 +83,7 @@
             <div className="featured-grid reveal">
               <div className="featured-main">
                 <article className="featured-card">
-                  <ImgSlot src="assets/project-shelter-hero.png" label={lang === "cn" ? "北京奥运候车亭 · 待替换" : "Beijing Olympics shelter · placeholder"} />
+                  <ImgSlot src="assets/huasheng/featured-beijing-shelter.webp" alt={lang === "cn" ? "北京奥运不锈钢候车亭项目" : "Beijing Olympics stainless steel shelter project"} label={lang === "cn" ? "北京奥运候车亭" : "Beijing Olympics shelter"} />
                   <div className="featured-meta">
                     <div className="top">
                       <span className="pin">●</span>
@@ -100,14 +100,14 @@
               </div>
               <div className="featured-side">
                 <article className="featured-card">
-                  <ImgSlot label={lang === "cn" ? "卡塔尔项目 · 占位" : "Qatar project · placeholder"} />
+                  <ImgSlot src="assets/huasheng/featured-qatar-shelter.webp" alt={lang === "cn" ? "卡塔尔多哈候车亭项目" : "Doha bus shelter project in Qatar"} label={lang === "cn" ? "卡塔尔项目" : "Qatar project"} />
                   <div className="featured-meta">
                     <div className="top"><span className="pin">●</span><span>{lang === "cn" ? "海外" : "OVERSEAS"}</span><span>· 2014</span></div>
                     <h4>{lang === "cn" ? "卡塔尔多哈候车亭" : "Doha shelters, Qatar"}</h4>
                   </div>
                 </article>
                 <article className="featured-card">
-                  <ImgSlot label={lang === "cn" ? "香港 MTR · 占位" : "Hong Kong MTR · placeholder"} />
+                  <ImgSlot src="assets/huasheng/mtr-ticket-counter.webp" alt={lang === "cn" ? "香港 MTR 不锈钢售票咨询柜台" : "Hong Kong MTR stainless steel ticket and enquiry counter"} label={lang === "cn" ? "香港 MTR" : "Hong Kong MTR"} />
                   <div className="featured-meta">
                     <div className="top"><span className="pin">●</span><span>{lang === "cn" ? "海外" : "OVERSEAS"}</span><span>· 2016</span></div>
                     <h4>{lang === "cn" ? "香港 MTR 售票咨询柜台" : "Hong Kong MTR ticket counter"}</h4>

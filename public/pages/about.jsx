@@ -17,7 +17,7 @@
                 <p className="lede reveal">{a.hero.sub}</p>
               </div>
               <div className="page-hero-media reveal">
-                <ImgSlot label={lang === "cn" ? "厂区航拍 · 占位" : "Factory aerial · placeholder"} />
+                <ImgSlot src="assets/huasheng/about-factory-campus.webp" alt={lang === "cn" ? "华盛金属厂区外观" : "HuaSheng Metal factory campus exterior"} label={lang === "cn" ? "厂区外观" : "Factory exterior"} />
               </div>
             </div>
           </div>
