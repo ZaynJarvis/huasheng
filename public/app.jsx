@@ -81,6 +81,8 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
     { id: "cases", label: t.nav.cases, href: ROUTE_PATHS.cases },
     { id: "quality", label: t.nav.quality, href: ROUTE_PATHS.quality },
     { id: "contact", label: t.nav.contact, href: ROUTE_PATHS.contact },
+    { id: "blog", label: "Blog", href: "/blog/", external: true },
+    { id: "zh", label: lang === "cn" ? "English" : "中文", href: lang === "cn" ? "/" : "/zh/", external: true },
   ];
 
   const go = (id) => {
@@ -106,7 +108,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
               <a key={n.id}
                  className={"nav-link" + (route === n.id ? " active" : "")}
                  href={n.href}
-                 onClick={(e) => { e.preventDefault(); go(n.id); }}>
+                 onClick={(e) => { if (!n.external) { e.preventDefault(); go(n.id); } }}>
                 {n.label}
               </a>
             ))}
@@ -135,7 +137,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
           <a key={n.id}
              className={"nav-link" + (route === n.id ? " active" : "")}
              href={n.href}
-             onClick={(e) => { e.preventDefault(); go(n.id); }}>
+             onClick={(e) => { if (!n.external) { e.preventDefault(); go(n.id); } }}>
             {n.label}
           </a>
         ))}
@@ -181,6 +183,8 @@ function Footer({ lang, t, setRoute }) {
               <li><a href="/projects" onClick={(e) => { e.preventDefault(); go("cases"); }}>{t.nav.cases}</a></li>
               <li><a href="/quality" onClick={(e) => { e.preventDefault(); go("quality"); }}>{t.nav.quality}</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>{t.nav.contact}</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href={lang === "cn" ? "/" : "/zh/"}>{lang === "cn" ? "English" : "中文"}</a></li>
             </ul>
           </div>
           <div className="footer-col">

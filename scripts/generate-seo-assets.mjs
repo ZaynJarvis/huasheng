@@ -4,12 +4,16 @@ import {
   ASSET_VERSION,
   LASTMOD,
   SITE_URL,
+  blogIndexPage,
   blogPages,
   canonicalUrl,
   coreKeywords,
+  directoryUpdateChecklist,
+  officialProfiles,
   productPages,
   routePages,
   site,
+  zhPage,
 } from "./seo-data.mjs";
 
 const root = path.resolve(new URL("..", import.meta.url).pathname);
@@ -30,6 +34,24 @@ function jsonLd(data) {
 
 function pageUrl(page) {
   return canonicalUrl(page.path);
+}
+
+function isZhPage(page) {
+  return page.lang === "zh-CN";
+}
+
+function alternateLinks(page) {
+  if (page.path === "/" || page.path === "/zh/") {
+    return [
+      `<link rel="alternate" hreflang="en" href="${SITE_URL}/" />`,
+      `<link rel="alternate" hreflang="zh-CN" href="${SITE_URL}/zh/" />`,
+      `<link rel="alternate" hreflang="x-default" href="${SITE_URL}/" />`,
+    ].join("\n");
+  }
+  return [
+    `<link rel="alternate" hreflang="en" href="${pageUrl(page)}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${pageUrl(page)}" />`,
+  ].join("\n");
 }
 
 function breadcrumbJsonLd(page) {
@@ -98,7 +120,7 @@ function organizationJsonLd() {
       "Romania",
     ],
     knowsAbout: coreKeywords,
-    sameAs: ["https://github.com/ZaynJarvis/huasheng"],
+    sameAs: officialProfiles.filter((profile) => profile.url !== SITE_URL).map((profile) => profile.url),
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -187,11 +209,14 @@ function head(page) {
   const url = pageUrl(page);
   const image = page.image.startsWith("http") ? page.image : `${SITE_URL}${page.image}`;
   const isProduct = page.path.startsWith("/products/");
+  const isArticle = page.type === "article";
+  const isBlogIndex = page.type === "blogIndex";
+  const lang = page.lang || "en";
   const title = esc(page.title);
   const description = esc(page.description);
 
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${esc(lang)}">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
@@ -202,9 +227,8 @@ function head(page) {
 <meta name="keywords" content="${esc(coreKeywords.join(", "))}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="${url}" />
-<link rel="alternate" hreflang="en" href="${url}" />
-<link rel="alternate" hreflang="x-default" href="${url}" />
-<meta property="og:type" content="website" />
+${alternateLinks(page)}
+<meta property="og:type" content="${isArticle ? "article" : "website"}" />
 <meta property="og:site_name" content="${esc(site.shortName)}" />
 <meta property="og:title" content="${title}" />
 <meta property="og:description" content="${description}" />
@@ -227,7 +251,7 @@ ${jsonLd(organizationJsonLd())}
 ${jsonLd(webSiteJsonLd())}
 ${jsonLd({
     "@context": "https://schema.org",
-    "@type": isProduct ? "CollectionPage" : "WebPage",
+    "@type": isProduct ? "CollectionPage" : isBlogIndex ? "Blog" : "WebPage",
     "@id": `${url}#webpage`,
     url,
     name: page.title,
@@ -235,14 +259,52 @@ ${jsonLd({
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     primaryImageOfPage: image,
-    inLanguage: ["en", "zh-CN"],
-    dateModified: LASTMOD,
+    inLanguage: lang,
+    dateModified: page.lastmod || LASTMOD,
   })}
 ${jsonLd(breadcrumbJsonLd(page))}
-${jsonLd(serviceJsonLd(page))}
+${isArticle || isBlogIndex ? "" : jsonLd(serviceJsonLd(page))}
+${isArticle ? jsonLd(articleJsonLd(page, image)) : ""}
+${isBlogIndex ? jsonLd(blogJsonLd()) : ""}
 ${faqJsonLd(page)}
 ${projectItemListJsonLd(page)}
 </head>`;
+}
+
+function articleJsonLd(page, image) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${pageUrl(page)}#article`,
+    headline: page.title,
+    description: page.description,
+    image,
+    datePublished: page.datePublished || page.lastmod || LASTMOD,
+    dateModified: page.lastmod || LASTMOD,
+    author: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    mainEntityOfPage: { "@id": `${pageUrl(page)}#webpage` },
+    about: coreKeywords,
+  };
+}
+
+function blogJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${SITE_URL}/blog/#blog`,
+    name: blogIndexPage.title,
+    description: blogIndexPage.description,
+    url: `${SITE_URL}/blog/`,
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    blogPost: blogPages.map((page) => ({
+      "@type": "BlogPosting",
+      headline: page.title,
+      url: pageUrl(page),
+      datePublished: page.datePublished,
+      dateModified: page.lastmod,
+    })),
+  };
 }
 
 function relatedLinks(page) {
@@ -255,7 +317,36 @@ function relatedLinks(page) {
     .join("\n");
 }
 
+function profileCards() {
+  return officialProfiles
+    .filter((profile) => profile.url !== SITE_URL)
+    .map((profile) => `
+      <article class="seo-profile-card">
+        <h3>${esc(profile.name)}</h3>
+        <p>${esc(profile.description)}</p>
+        <a class="btn btn-text" href="${esc(profile.url)}" rel="noopener noreferrer">${esc(profile.label)} <span class="arrow">→</span></a>
+      </article>`)
+    .join("\n");
+}
+
+function articleSections(page) {
+  if (!page.sections?.length) return "";
+  const sections = page.sections
+    .map((section) => `
+      <article class="seo-article-block">
+        <h2>${esc(section.heading)}</h2>
+        ${section.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("\n")}
+      </article>`)
+    .join("\n");
+  return `<section class="tight">
+    <div class="container">
+      <div class="seo-article">${sections}</div>
+    </div>
+  </section>`;
+}
+
 function staticBody(page, includeApp = true) {
+  const isZh = isZhPage(page);
   const image = esc(page.image);
   const bullets = page.bullets.map((item) => `<li>${esc(item)}</li>`).join("\n");
   const faqs = page.faqs?.map(([q, a]) => `
@@ -265,8 +356,37 @@ function staticBody(page, includeApp = true) {
     </details>`).join("\n") || "";
 
   const related = relatedLinks(page);
+  const labels = {
+    home: isZh ? "首页" : "Home",
+    about: isZh ? "关于" : "About",
+    capabilities: isZh ? "能力" : "Capabilities",
+    projects: isZh ? "案例" : "Projects",
+    quality: isZh ? "质量" : "Quality",
+    blog: isZh ? "Blog" : "Blog",
+    zh: isZh ? "English" : "中文",
+    quote: isZh ? "获取报价" : "Get a Quote",
+    factsEyebrow: isZh ? "可验证企业事实" : "Verified company facts",
+    factsTitle: isZh ? "为什么买家会把华盛列入候选" : "Why buyers shortlist HuaSheng Metal",
+    factsBody: isZh
+      ? "广州华盛金属材料有限公司 / Guangzhou HuaSheng Metal Materials Co., Ltd. 是广州金属制造商，服务公交候车亭、广告灯箱、不锈钢结构、金属岗亭和精密金属 OEM/ODM 项目。"
+      : "广州华盛金属材料有限公司 / Guangzhou HuaSheng Metal Materials Co., Ltd. is a Guangzhou-based metal manufacturer for bus shelters, advertising light boxes, stainless steel structures, metal kiosks, and precision metal OEM/ODM products.",
+    profilesEyebrow: isZh ? "官方资料入口" : "Official profile links",
+    profilesTitle: isZh ? "统一实体资料与外部目录链接" : "Entity consolidation across controlled directories",
+    profilesBody: isZh
+      ? "站内明确把旧官网、B2B 目录和新 canonical 官网连接起来。外部平台后台获得登录权限后，应把 website 字段统一更新为 https://hua-sheng.org。"
+      : "The site connects the legacy website, B2B directory profiles, and the new canonical website. When account access is available, each external profile should set its website field to https://hua-sheng.org.",
+    faq: isZh ? "常见问题" : "FAQ",
+    buyerQuestions: isZh ? "买家常见问题" : "Buyer questions",
+    products: isZh ? "产品" : "Products",
+    contact: isZh ? "联系" : "Contact",
+    footerTag: isZh ? "30 年金属精工，服务城市公共设施" : "30 Years of Metal Craft for Public Cityscapes",
+    rights: isZh
+      ? "© 2026 广州华盛金属材料有限公司 版权所有。"
+      : "© 2026 Guangzhou HuaSheng Metal Materials Co., Ltd. All Rights Reserved.",
+  };
+  const zhHref = isZh ? "/" : "/zh/";
 
-  return `<body data-theme="clarity" data-lang="en" data-screen="${esc(page.key || page.slug || "seo")}">
+  return `<body data-theme="clarity" data-lang="${isZh ? "cn" : "en"}" data-screen="${esc(page.key || page.slug || "seo")}">
   <div id="root">
     <header class="site-header scrolled">
       <div class="container-wide nav-inner">
@@ -278,15 +398,17 @@ function staticBody(page, includeApp = true) {
           </span>
         </a>
         <nav class="nav-links" aria-label="Primary">
-          <a class="nav-link" href="/">Home</a>
-          <a class="nav-link" href="/about">About</a>
-          <a class="nav-link" href="/capabilities">Capabilities</a>
-          <a class="nav-link" href="/projects">Projects</a>
-          <a class="nav-link" href="/quality">Quality</a>
-          <a class="nav-link" href="/contact">Contact</a>
+          <a class="nav-link" href="/">${labels.home}</a>
+          <a class="nav-link" href="/about">${labels.about}</a>
+          <a class="nav-link" href="/capabilities">${labels.capabilities}</a>
+          <a class="nav-link" href="/projects">${labels.projects}</a>
+          <a class="nav-link" href="/quality">${labels.quality}</a>
+          <a class="nav-link" href="/blog/">${labels.blog}</a>
+          <a class="nav-link" href="/contact">${labels.contact}</a>
+          <a class="nav-link" href="${zhHref}">${labels.zh}</a>
         </nav>
         <div class="nav-actions">
-          <a class="btn btn-primary" href="/contact">Get a Quote <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="/contact">${labels.quote} <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </header>
@@ -309,14 +431,25 @@ function staticBody(page, includeApp = true) {
       <section class="tight">
         <div class="container">
           <div class="section-head">
-            <span class="eyebrow"><span>Verified company facts</span></span>
-            <h2 class="display-l">Why buyers shortlist HuaSheng Metal</h2>
-            <p class="lede">广州华盛金属材料有限公司 / Guangzhou HuaSheng Metal Materials Co., Ltd. is a Guangzhou-based metal manufacturer for bus shelters, advertising light boxes, stainless steel structures, metal kiosks, and precision metal OEM/ODM products.</p>
+            <span class="eyebrow"><span>${labels.factsEyebrow}</span></span>
+            <h2 class="display-l">${labels.factsTitle}</h2>
+            <p class="lede">${labels.factsBody}</p>
           </div>
           <ul class="seo-bullets">${bullets}</ul>
         </div>
       </section>
-      ${faqs ? `<section><div class="container"><div class="section-head"><span class="eyebrow"><span>FAQ</span></span><h2 class="display-l">Buyer questions</h2></div><div class="seo-faq">${faqs}</div></div></section>` : ""}
+${articleSections(page)}
+      <section class="tight">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow"><span>${labels.profilesEyebrow}</span></span>
+            <h2 class="display-l">${labels.profilesTitle}</h2>
+            <p class="lede">${labels.profilesBody}</p>
+          </div>
+          <div class="seo-profile-grid">${profileCards()}</div>
+        </div>
+      </section>
+${faqs ? `<section><div class="container"><div class="section-head"><span class="eyebrow"><span>${labels.faq}</span></span><h2 class="display-l">${labels.buyerQuestions}</h2></div><div class="seo-faq">${faqs}</div></div></section>` : ""}
     </main>
     <footer class="site-footer">
       <div class="container-wide">
@@ -329,10 +462,10 @@ function staticBody(page, includeApp = true) {
                 <span class="b">Guangzhou · 1989</span>
               </span>
             </a>
-            <p class="footer-tag">30 Years of Metal Craft for Public Cityscapes</p>
+            <p class="footer-tag">${labels.footerTag}</p>
           </div>
           <div class="footer-col">
-            <h4>Products</h4>
+            <h4>${labels.products}</h4>
             <ul>
               <li><a href="/products/bus-shelters/">Bus shelters</a></li>
               <li><a href="/products/advertising-light-boxes/">Advertising light boxes</a></li>
@@ -341,7 +474,7 @@ function staticBody(page, includeApp = true) {
             </ul>
           </div>
           <div class="footer-col">
-            <h4>Contact</h4>
+            <h4>${labels.contact}</h4>
             <ul>
               <li>Zayn Jarvis / Manager Liu</li>
               <li>${esc(site.telephone)}</li>
@@ -352,7 +485,7 @@ function staticBody(page, includeApp = true) {
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© 2026 Guangzhou HuaSheng Metal Materials Co., Ltd. All Rights Reserved.</span>
+          <span>${labels.rights}</span>
         </div>
       </div>
     </footer>
@@ -397,12 +530,12 @@ ${staticBody(page, includeApp)}`;
 }
 
 function sitemap() {
-  const pages = [...routePages, ...productPages].map((page) => ({
+  const pages = [...routePages, zhPage, ...productPages].map((page) => ({
     loc: pageUrl(page),
     lastmod: LASTMOD,
-    priority: page.path === "/" ? "1.0" : page.path.startsWith("/products/") ? "0.8" : "0.9",
+    priority: page.path === "/" ? "1.0" : page.path === "/zh/" ? "0.9" : page.path.startsWith("/products/") ? "0.8" : "0.9",
   }));
-  const blog = blogPages.map((page) => ({
+  const blog = [blogIndexPage, ...blogPages].map((page) => ({
     loc: canonicalUrl(page.path),
     lastmod: page.lastmod,
     priority: page.path === "/blog/" ? "0.7" : "0.6",
@@ -465,11 +598,17 @@ function manifest() {
 }
 
 function llmsTxt(full = false) {
-  const pageList = [...routePages, ...productPages]
+  const pageList = [...routePages, zhPage, ...productPages, blogIndexPage, ...blogPages]
     .map((page) => `- ${page.title}: ${pageUrl(page)}\n  ${page.summary}`)
     .join("\n");
   const products = productPages
     .map((page) => `- ${page.h1}: ${page.bullets.join(" ")}`)
+    .join("\n");
+  const profiles = officialProfiles
+    .map((profile) => `- ${profile.name}: ${profile.url}\n  ${profile.description}`)
+    .join("\n");
+  const directoryActions = directoryUpdateChecklist
+    .map((item) => `- ${item.platform}${item.url ? ` (${item.url})` : ""}: ${item.action}`)
     .join("\n");
   const facts = [
     "Legal English name: Guangzhou HuaSheng Metal Materials Co., Ltd.",
@@ -482,6 +621,7 @@ function llmsTxt(full = false) {
     "Reference projects: Guangzhou modern shelters, Beijing Olympics stainless steel shelters, Shanghai Expo bus shelters, Hangzhou public bicycle stations, Hong Kong MTR counters, Doha shelters, Riyadh shelters, Nepal government facilities, New Zealand postal shelters, Oman public works, Korea aluminium shelters, Romania aluminium signage, and IKEA-related OEM metal products.",
     "Quality system: ISO 9001, DMAIC, IQC, IPQC, FQC, corrective action records, and certification documentation.",
     `Contact: ${site.email}; ${site.telephone}.`,
+    "Canonical website for external directory profiles: https://hua-sheng.org.",
   ];
   return `# HuaSheng Metal Materials
 
@@ -493,6 +633,12 @@ ${facts.map((fact) => `- ${fact}`).join("\n")}
 ## Canonical Pages
 ${pageList}
 
+## Official and Directory Profiles
+${profiles}
+
+## External Profile Update Checklist
+${directoryActions}
+
 ## Product and Service Coverage
 ${products}
 
@@ -500,7 +646,7 @@ ${products}
 ${coreKeywords.map((keyword) => `- ${keyword}`).join("\n")}
 
 ${full ? `## Buyer FAQ
-${[...routePages, ...productPages]
+${[...routePages, zhPage, ...productPages, ...blogPages]
   .flatMap((page) => page.faqs || [])
   .map(([q, a]) => `### ${q}\n${a}`)
   .join("\n\n")}
@@ -550,6 +696,10 @@ function headers() {
 
 function redirects() {
   return `/cases /projects 301
+/zh /zh/ 301
+/cn /zh/ 301
+/cn/ /zh/ 301
+/blog /blog/ 301
 /products /products/bus-shelters/ 302
 /products/bus-shelters /products/bus-shelters/ 301
 /products/advertising-light-boxes /products/advertising-light-boxes/ 301
@@ -587,7 +737,12 @@ async function main() {
   for (const page of routePages) {
     await writePage(page, true);
   }
+  await writePage(zhPage, false);
   for (const page of productPages) {
+    await writePage(page, false);
+  }
+  await writePage(blogIndexPage, false);
+  for (const page of blogPages) {
     await writePage(page, false);
   }
   await writeFile(path.join(publicDir, "sitemap.xml"), sitemap());

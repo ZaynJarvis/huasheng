@@ -13,6 +13,7 @@ Guangzhou HuaSheng Metal Materials is a China-based manufacturer of bus shelters
 - Reference projects: Guangzhou modern shelters, Beijing Olympics stainless steel shelters, Shanghai Expo bus shelters, Hangzhou public bicycle stations, Hong Kong MTR counters, Doha shelters, Riyadh shelters, Nepal government facilities, New Zealand postal shelters, Oman public works, Korea aluminium shelters, Romania aluminium signage, and IKEA-related OEM metal products.
 - Quality system: ISO 9001, DMAIC, IQC, IPQC, FQC, corrective action records, and certification documentation.
 - Contact: hi@hua-sheng.org; +65 8309-9012.
+- Canonical website for external directory profiles: https://hua-sheng.org.
 
 ## Canonical Pages
 - Bus Shelter Manufacturer in China | HuaSheng Metal Materials: https://hua-sheng.org/
@@ -27,6 +28,8 @@ Guangzhou HuaSheng Metal Materials is a China-based manufacturer of bus shelters
   HuaSheng's quality system combines ISO 9001 certification, DMAIC quality control, incoming material inspection, first-piece checks, in-process patrols, final quality control, and certification records.
 - Contact HuaSheng Metal | Bus Shelter & Metal OEM Quotation: https://hua-sheng.org/contact
   Send HuaSheng your project type, target market, quantity, drawings or reference images, timeline, and quality requirements. The team replies to concrete project enquiries within one business day.
+- 公交候车亭厂家 | 广告灯箱与金属 OEM 代工 | 广州华盛金属: https://hua-sheng.org/zh/
+  华盛金属在广州提供公交候车亭、广告灯箱、金属岗亭、不锈钢工程、城市公共家具和精密金属 OEM/ODM 制造服务，支持从图纸评审、切割成型、焊接喷涂、装配质检到装柜发运的全流程交付。
 - Bus Shelter Manufacturer | Smart Bus Stops & Transit Shelters | HuaSheng: https://hua-sheng.org/products/bus-shelters/
   HuaSheng builds bus stop shelters and public transit street furniture for city planners, transit operators, advertising media owners, government buyers, and contractors.
 - Advertising Light Box Manufacturer | MUPI & Outdoor Display Panels: https://hua-sheng.org/products/advertising-light-boxes/
@@ -35,6 +38,37 @@ Guangzhou HuaSheng Metal Materials is a China-based manufacturer of bus shelters
   HuaSheng manufactures durable metal kiosks and small public structures for postal services, government programs, outdoor commercial use, and city streetscape systems.
 - Precision Metal OEM/ODM Manufacturer | Cabinets, Shelving, Kitchen Parts: https://hua-sheng.org/products/precision-metal-oem/
   HuaSheng provides OEM and ODM metal manufacturing for international brands, retailers, furniture programs, public infrastructure suppliers, and project contractors.
+- HuaSheng Blog | Bus Shelter Manufacturing and Metal Fabrication Notes: https://hua-sheng.org/blog/
+  A crawlable content hub for buyer questions, project cases, and process articles covering public transit shelters, outdoor advertising displays, metal kiosks, surface treatment, and OEM metal fabrication.
+- Bus Shelter Manufacturing Process: From Drawings to Container Loading: https://hua-sheng.org/blog/bus-shelter-manufacturing-process/
+  A practical overview of how a custom bus shelter moves through HuaSheng's metal fabrication workflow, with checkpoints that matter to city planners, contractors, and outdoor media operators.
+- Outdoor Advertising Light Box Weatherproofing: What Buyers Should Specify: https://hua-sheng.org/blog/outdoor-light-box-weatherproofing/
+  Outdoor advertising light boxes need more than a bright panel. Buyers should define the metal frame, surface treatment, panel access, drainage, wiring, installation environment, and maintenance plan early.
+- Leveraging AI for Efficiency, Deepening Service for Growth: https://hua-sheng.org/blog/ai-application-meeting/
+  HuaSheng's AI application discussion focuses on practical service improvements: clearer buyer communication, faster document preparation, better multilingual responses, and more consistent project knowledge capture.
+
+## Official and Directory Profiles
+- Canonical website: https://hua-sheng.org
+  Primary crawlable company website and source of current product, project, quality, and contact facts.
+- Legacy official website: https://www.huasheng-metal.com/
+  Controlled legacy company website that should link to the new canonical domain.
+- Alibaba showroom: https://gzhsgm.en.alibaba.com/
+  Alibaba supplier showroom for Guangzhou HuaSheng Metal Materials.
+- Made-in-China showroom: https://gz-huasheng.en.made-in-china.com/
+  Made-in-China supplier showroom for Guangzhou HuaSheng Metal Materials.
+- GoldSupplier profile: https://gzhsgm.goldsupplier.com/
+  GoldSupplier profile for bus stop, light box, and retail kiosk sourcing.
+- Website source repository: https://github.com/ZaynJarvis/huasheng
+  Public source repository for the HuaSheng website implementation.
+
+## External Profile Update Checklist
+- Legacy official website (https://www.huasheng-metal.com/): Add a prominent link or redirect to https://hua-sheng.org from the header, footer, contact page, and sitemap when admin access is available.
+- Alibaba (https://gzhsgm.en.alibaba.com/): Set the company website field and showroom links to https://hua-sheng.org.
+- Made-in-China (https://gz-huasheng.en.made-in-china.com/): Set the website/profile external link to https://hua-sheng.org and keep company name/address consistent.
+- GoldSupplier (https://gzhsgm.goldsupplier.com/): Set the contact/profile website link to https://hua-sheng.org.
+- LinkedIn: When the controlled company page URL is confirmed, set its website to https://hua-sheng.org and add it to officialProfiles.
+- Google Business Profile: Set website to https://hua-sheng.org and keep NAP fields aligned with the canonical contact page.
+- Bing Places: Set website to https://hua-sheng.org and mirror Google Business Profile NAP fields.
 
 ## Product and Service Coverage
 - Custom bus shelter manufacturer for city transit projects: Structures for galvanized steel, stainless steel, and aluminum alloy shelter designs. Options for benches, lighting, advertising panels, LED display areas, solar power, and wayfinding pylons. Reference projects include Guangzhou, Beijing Olympics, Shanghai Expo, Doha, Riyadh, Korea, Oman, and Nepal. Manufacturing support from drawings through fabrication, finishing, assembly, packing, and overseas installation guidance.

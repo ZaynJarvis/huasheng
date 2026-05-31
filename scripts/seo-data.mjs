@@ -37,6 +37,83 @@ export const site = {
     "Guangzhou HuaSheng Metal Materials is a China-based manufacturer of bus shelters, advertising light boxes, stainless steel structures, and precision metal OEM/ODM products.",
 };
 
+export const officialProfiles = [
+  {
+    name: "Canonical website",
+    url: SITE_URL,
+    label: "hua-sheng.org",
+    description: "Primary crawlable company website and source of current product, project, quality, and contact facts.",
+  },
+  {
+    name: "Legacy official website",
+    url: "https://www.huasheng-metal.com/",
+    label: "huasheng-metal.com",
+    description: "Controlled legacy company website that should link to the new canonical domain.",
+  },
+  {
+    name: "Alibaba showroom",
+    url: "https://gzhsgm.en.alibaba.com/",
+    label: "gzhsgm.en.alibaba.com",
+    description: "Alibaba supplier showroom for Guangzhou HuaSheng Metal Materials.",
+  },
+  {
+    name: "Made-in-China showroom",
+    url: "https://gz-huasheng.en.made-in-china.com/",
+    label: "gz-huasheng.en.made-in-china.com",
+    description: "Made-in-China supplier showroom for Guangzhou HuaSheng Metal Materials.",
+  },
+  {
+    name: "GoldSupplier profile",
+    url: "https://gzhsgm.goldsupplier.com/",
+    label: "gzhsgm.goldsupplier.com",
+    description: "GoldSupplier profile for bus stop, light box, and retail kiosk sourcing.",
+  },
+  {
+    name: "Website source repository",
+    url: "https://github.com/ZaynJarvis/huasheng",
+    label: "GitHub source",
+    description: "Public source repository for the HuaSheng website implementation.",
+  },
+];
+
+export const directoryUpdateChecklist = [
+  {
+    platform: "Legacy official website",
+    url: "https://www.huasheng-metal.com/",
+    action: "Add a prominent link or redirect to https://hua-sheng.org from the header, footer, contact page, and sitemap when admin access is available.",
+  },
+  {
+    platform: "Alibaba",
+    url: "https://gzhsgm.en.alibaba.com/",
+    action: "Set the company website field and showroom links to https://hua-sheng.org.",
+  },
+  {
+    platform: "Made-in-China",
+    url: "https://gz-huasheng.en.made-in-china.com/",
+    action: "Set the website/profile external link to https://hua-sheng.org and keep company name/address consistent.",
+  },
+  {
+    platform: "GoldSupplier",
+    url: "https://gzhsgm.goldsupplier.com/",
+    action: "Set the contact/profile website link to https://hua-sheng.org.",
+  },
+  {
+    platform: "LinkedIn",
+    url: "",
+    action: "When the controlled company page URL is confirmed, set its website to https://hua-sheng.org and add it to officialProfiles.",
+  },
+  {
+    platform: "Google Business Profile",
+    url: "",
+    action: "Set website to https://hua-sheng.org and keep NAP fields aligned with the canonical contact page.",
+  },
+  {
+    platform: "Bing Places",
+    url: "",
+    action: "Set website to https://hua-sheng.org and mirror Google Business Profile NAP fields.",
+  },
+];
+
 export const routePages = [
   {
     key: "home",
@@ -251,6 +328,47 @@ export const routePages = [
   },
 ];
 
+export const zhPage = {
+  key: "zh",
+  path: "/zh/",
+  lang: "zh-CN",
+  title: "公交候车亭厂家 | 广告灯箱与金属 OEM 代工 | 广州华盛金属",
+  description:
+    "广州华盛金属材料有限公司是广州公交候车亭、广告灯箱、不锈钢结构、金属岗亭和精密金属 OEM/ODM 制造商，服务国内外市政、公建设施、广告媒体和品牌代工项目。",
+  h1: "广州公交候车亭、广告灯箱与金属 OEM 制造商",
+  eyebrow: "始于 1989 · 广州华盛金属材料有限公司",
+  image: "/assets/huasheng/hero-bus-shelter-deployed.webp",
+  summary:
+    "华盛金属在广州提供公交候车亭、广告灯箱、金属岗亭、不锈钢工程、城市公共家具和精密金属 OEM/ODM 制造服务，支持从图纸评审、切割成型、焊接喷涂、装配质检到装柜发运的全流程交付。",
+  bullets: [
+    "核心关键词：公交候车亭厂家、广告灯箱厂家、户外公共家具、金属岗亭、不锈钢工程、金属 OEM 代工。",
+    "工厂能力：激光切割、CNC 折弯冲剪、机器人焊接、表面处理、粉末喷涂、装配、终检和出口包装。",
+    "项目经验：广州、北京奥运、上海世博、香港 MTR、卡塔尔多哈、沙特利雅得、阿曼、尼泊尔、新西兰、韩国等项目。",
+    "合作场景：市政公交设施、广告媒体运营商、海外政府采购、建筑承包商、零售和家居品牌 OEM/ODM。",
+  ],
+  links: [
+    ["/products/bus-shelters/", "公交候车亭制造"],
+    ["/products/advertising-light-boxes/", "广告灯箱与 MUPI"],
+    ["/products/metal-kiosks/", "金属岗亭与公共服务亭"],
+    ["/products/precision-metal-oem/", "精密金属 OEM/ODM"],
+    ["/contact", "获取项目报价"],
+  ],
+  faqs: [
+    [
+      "华盛金属主要生产什么？",
+      "华盛金属主要生产公交候车亭、广告灯箱、金属岗亭、不锈钢结构、导视标识、户外公共家具和精密金属 OEM/ODM 产品。",
+    ],
+    [
+      "华盛金属可以支持海外项目吗？",
+      "可以。华盛金属有中东、欧洲、亚洲、大洋洲等项目经验，可支持出口包装、装柜和海外安装指导。",
+    ],
+    [
+      "询价需要提供哪些资料？",
+      "建议提供产品类型、数量、图纸或参考图片、尺寸、材料、表面处理、项目国家、交期和质量要求。",
+    ],
+  ],
+};
+
 export const productPages = [
   {
     slug: "bus-shelters",
@@ -370,16 +488,200 @@ export const productPages = [
   },
 ];
 
+export const blogIndexPage = {
+  key: "blog",
+  path: "/blog/",
+  type: "blogIndex",
+  title: "HuaSheng Blog | Bus Shelter Manufacturing and Metal Fabrication Notes",
+  description:
+    "Manufacturing notes, project case writeups, and process articles from HuaSheng Metal for bus shelters, advertising light boxes, kiosks, and precision metal OEM products.",
+  h1: "Bus shelter manufacturing notes and project case articles",
+  eyebrow: "HuaSheng Blog",
+  image: "/assets/huasheng/capabilities-workshop.webp",
+  lastmod: "2026-05-31",
+  summary:
+    "A crawlable content hub for buyer questions, project cases, and process articles covering public transit shelters, outdoor advertising displays, metal kiosks, surface treatment, and OEM metal fabrication.",
+  bullets: [
+    "Monthly content target: publish one to two project cases or process articles and regenerate sitemap.xml plus llms-full.txt.",
+    "Topic clusters: bus shelter manufacturing, outdoor light boxes, weather-resistant metal kiosks, quality control, export packing, and OEM fabrication.",
+    "Each article should include a clear buyer problem, manufacturing answer, project evidence, internal product links, and quotation CTA.",
+  ],
+  links: [
+    ["/blog/bus-shelter-manufacturing-process/", "Bus shelter manufacturing process"],
+    ["/blog/outdoor-light-box-weatherproofing/", "Outdoor light box weatherproofing"],
+    ["/blog/ai-application-meeting/", "AI application meeting"],
+    ["/contact", "Discuss a project"],
+  ],
+  faqs: [
+    [
+      "How often should HuaSheng publish new content?",
+      "For steady SEO and GEO growth, add one to two project cases or process articles per month and keep sitemap.xml plus llms-full.txt synchronized.",
+    ],
+  ],
+};
+
 export const blogPages = [
   {
-    path: "/blog/",
-    title: "HuaSheng Blog",
-    lastmod: "2026-05-29",
+    slug: "bus-shelter-manufacturing-process",
+    path: "/blog/bus-shelter-manufacturing-process/",
+    type: "article",
+    title: "Bus Shelter Manufacturing Process: From Drawings to Container Loading",
+    description:
+      "A buyer-focused guide to HuaSheng's bus shelter manufacturing process, from drawings, material inspection, cutting, welding, coating, assembly, quality control, packing, and shipping.",
+    h1: "Bus shelter manufacturing process: from drawings to container loading",
+    eyebrow: "Process article",
+    image: "/assets/huasheng/featured-beijing-shelter-v2.webp",
+    summary:
+      "A practical overview of how a custom bus shelter moves through HuaSheng's metal fabrication workflow, with checkpoints that matter to city planners, contractors, and outdoor media operators.",
+    datePublished: "2026-05-31",
+    lastmod: "2026-05-31",
+    bullets: [
+      "Start with drawings, reference images, shelter dimensions, advertising panel needs, electrical requirements, and destination climate.",
+      "Control material selection before fabrication: galvanized steel, stainless steel, aluminum alloy, glass, lighting, benches, and fasteners.",
+      "Use stage gates for cutting, forming, welding, surface treatment, assembly, FQC, packing, and container loading.",
+      "Keep documentation aligned with quotation, drawings, BOM, inspection records, and installation guidance.",
+    ],
+    sections: [
+      {
+        heading: "1. Engineering review before quotation",
+        paragraphs: [
+          "A reliable shelter project starts before metal is cut. Buyers should share dimensions, wind-load expectations, electrical requirements, advertising display formats, bench and roof options, site constraints, and destination standards.",
+          "HuaSheng's engineering review turns that input into a manufacturable structure, then checks material availability, coating approach, packing size, and the sequence from prototype to batch production.",
+        ],
+      },
+      {
+        heading: "2. Fabrication and surface treatment",
+        paragraphs: [
+          "The typical workflow covers incoming material inspection, laser cutting, CNC punching, bending, welding, grinding, surface preparation, powder coating or other project-specific finish, then controlled assembly.",
+          "For outdoor shelters, coating and drainage details matter as much as the frame. The manufacturing plan should account for corrosion resistance, service access, lighting maintenance, and safe on-site installation.",
+        ],
+      },
+      {
+        heading: "3. Final inspection, packing, and loading",
+        paragraphs: [
+          "Before dispatch, the factory checks appearance, dimensions, structural details, electrical integration, accessories, labels, and packing. Export projects also need container loading planning so long parts and fragile panels arrive ready for installation.",
+          "A complete buyer handoff should include product photos, packing records, inspection notes, and any site installation guidance needed by the local contractor.",
+        ],
+      },
+    ],
+    links: [
+      ["/products/bus-shelters/", "Bus shelter product page"],
+      ["/capabilities", "Factory capabilities"],
+      ["/quality", "Quality workflow"],
+      ["/contact", "Request a quotation"],
+    ],
+    faqs: [
+      [
+        "What information is needed for a custom bus shelter quote?",
+        "Send drawings or reference images, dimensions, quantity, material preference, advertising panel requirements, lighting or solar requirements, destination country, and expected delivery schedule.",
+      ],
+    ],
   },
   {
+    slug: "outdoor-light-box-weatherproofing",
+    path: "/blog/outdoor-light-box-weatherproofing/",
+    type: "article",
+    title: "Outdoor Advertising Light Box Weatherproofing: What Buyers Should Specify",
+    description:
+      "A manufacturing note for outdoor advertising light boxes and MUPI displays, covering metal frames, coatings, drainage, electrical access, glass or panel choices, and maintenance planning.",
+    h1: "Outdoor advertising light box weatherproofing: what buyers should specify",
+    eyebrow: "Process article",
+    image: "/assets/huasheng/case-qatar-shelter.webp",
+    summary:
+      "Outdoor advertising light boxes need more than a bright panel. Buyers should define the metal frame, surface treatment, panel access, drainage, wiring, installation environment, and maintenance plan early.",
+    datePublished: "2026-05-31",
+    lastmod: "2026-05-31",
+    bullets: [
+      "Specify location, wind exposure, rainfall, temperature range, cleaning method, and expected service life.",
+      "Match the frame material and coating system to the outdoor environment.",
+      "Plan safe access for poster changes, LED module maintenance, wiring, and drainage.",
+      "Integrate the light box with bus shelters, kiosks, MUPI displays, or wayfinding structures when needed.",
+    ],
+    sections: [
+      {
+        heading: "1. Weather resistance starts with the frame",
+        paragraphs: [
+          "The metal frame determines stability, alignment, service access, and long-term appearance. Buyers should define whether the project needs stainless steel, galvanized steel, aluminum alloy, or a hybrid structure.",
+          "Surface treatment should be chosen for the destination environment, not only for the showroom sample. Coastal, desert, high-rainfall, and high-traffic city locations create different maintenance risks.",
+        ],
+      },
+      {
+        heading: "2. Maintenance access is part of the design",
+        paragraphs: [
+          "Poster replacement, LED maintenance, electrical inspection, and cleaning should be planned before production. Hinges, locks, drainage holes, cable routing, and internal reinforcement can make the difference between a product that is easy to maintain and one that becomes expensive on site.",
+        ],
+      },
+      {
+        heading: "3. Integrating displays with shelters or kiosks",
+        paragraphs: [
+          "Many projects combine advertising light boxes with bus shelters, public kiosks, benches, wayfinding pylons, or smart-city modules. In those cases, the manufacturing review should cover structure, electrical layout, installation sequence, and spare-part access together.",
+        ],
+      },
+    ],
+    links: [
+      ["/products/advertising-light-boxes/", "Advertising light box product page"],
+      ["/products/bus-shelters/", "Bus shelter integration"],
+      ["/capabilities", "Manufacturing capabilities"],
+      ["/contact", "Discuss a display project"],
+    ],
+    faqs: [
+      [
+        "Can HuaSheng integrate light boxes into public transit shelters?",
+        "Yes. HuaSheng manufactures advertising light boxes as standalone displays and as integrated modules for bus shelters, kiosks, and public city furniture.",
+      ],
+    ],
+  },
+  {
+    slug: "ai-application-meeting",
     path: "/blog/ai-application-meeting/",
+    type: "article",
     title: "Leveraging AI for Efficiency, Deepening Service for Growth",
+    description:
+      "A HuaSheng internal improvement note about using AI tools to improve multilingual sales communication, manufacturing documentation, buyer response quality, and long-term service capability.",
+    h1: "Leveraging AI for efficiency, deepening service for growth",
+    eyebrow: "Company note",
+    image: "/assets/huasheng/projects-overview.webp",
+    summary:
+      "HuaSheng's AI application discussion focuses on practical service improvements: clearer buyer communication, faster document preparation, better multilingual responses, and more consistent project knowledge capture.",
+    datePublished: "2026-05-29",
     lastmod: "2026-05-29",
+    bullets: [
+      "Use AI to organize multilingual enquiry replies, product explanations, and project documentation.",
+      "Keep factory facts, quotation inputs, quality requirements, and delivery notes consistent across sales channels.",
+      "Improve service speed without replacing engineering review or human confirmation for specifications.",
+    ],
+    sections: [
+      {
+        heading: "1. AI as a service efficiency tool",
+        paragraphs: [
+          "For international manufacturing projects, slow or inconsistent communication can create avoidable friction. AI tools can help the team organize product facts, translate buyer requirements, and prepare clearer first responses.",
+          "The goal is not to replace factory expertise. The goal is to make engineering and sales knowledge easier to reuse, verify, and deliver to buyers in a useful format.",
+        ],
+      },
+      {
+        heading: "2. Better documentation for complex projects",
+        paragraphs: [
+          "Bus shelters, light boxes, kiosks, and OEM metal products often require drawings, material notes, finish requirements, packing plans, and quality records. Structured AI-assisted documentation can help keep those details aligned across quotation, production, and after-sales communication.",
+        ],
+      },
+      {
+        heading: "3. Human confirmation remains the control point",
+        paragraphs: [
+          "Specifications, prices, lead times, and compliance requirements still need human confirmation. AI is most useful when it makes the team faster at finding information, preparing drafts, and checking consistency before a qualified person makes the final decision.",
+        ],
+      },
+    ],
+    links: [
+      ["/about", "About HuaSheng"],
+      ["/quality", "Quality system"],
+      ["/contact", "Contact the team"],
+    ],
+    faqs: [
+      [
+        "Does HuaSheng use AI to replace engineering review?",
+        "No. AI can help organize communication and documentation, but engineering specifications, pricing, lead times, and quality requirements still require human review.",
+      ],
+    ],
   },
 ];
 
@@ -387,4 +689,3 @@ export function canonicalUrl(path) {
   if (path === "/") return `${SITE_URL}/`;
   return `${SITE_URL}${path}`;
 }
-

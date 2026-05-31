@@ -1025,6 +1025,52 @@ body[data-theme="heritage"] .check-mark { color: #0f1216; }
   color: var(--ink-soft);
   line-height: 1.6;
 }
+.seo-article {
+  display: grid;
+  gap: 22px;
+}
+.seo-article-block {
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+}
+.seo-article-block h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.08;
+  margin: 0 0 14px;
+  font-weight: 560;
+}
+.seo-article-block p {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin: 0 0 12px;
+}
+.seo-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+.seo-profile-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  padding: 20px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.seo-profile-card h3 {
+  margin: 0;
+  font-size: 17px;
+}
+.seo-profile-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  flex: 1;
+}
 .seo-faq {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1049,5 +1095,7 @@ body[data-theme="heritage"] .check-mark { color: #0f1216; }
 @media (max-width: 780px) {
   .seo-static .page-hero { padding-top: 104px; }
   .seo-bullets,
-  .seo-faq { grid-template-columns: 1fr; }
+  .seo-faq,
+  .seo-profile-grid { grid-template-columns: 1fr; }
+  .seo-article-block { padding-left: 18px; }
 }
