@@ -1,0 +1,9 @@
+/cases /projects 301
+/products /products/bus-shelters/ 302
+/products/bus-shelters /products/bus-shelters/ 301
+/products/advertising-light-boxes /products/advertising-light-boxes/ 301
+/products/metal-kiosks /products/metal-kiosks/ 301
+/products/precision-metal-oem /products/precision-metal-oem/ 301
+http://hua-sheng.org/* https://hua-sheng.org/:splat 301
+https://www.hua-sheng.org/* https://hua-sheng.org/:splat 301
+http://www.hua-sheng.org/* https://hua-sheng.org/:splat 301

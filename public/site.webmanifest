@@ -1,0 +1,28 @@
+{
+  "name": "HuaSheng Metal Materials",
+  "short_name": "HuaSheng",
+  "description": "Guangzhou HuaSheng Metal Materials is a China-based manufacturer of bus shelters, advertising light boxes, stainless steel structures, and precision metal OEM/ODM products.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f2",
+  "theme_color": "#f5f5f2",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

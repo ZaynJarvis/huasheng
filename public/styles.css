@@ -992,3 +992,62 @@ body[data-theme="clarity"] .form-success h3 { font-weight: 600; }
   color: #fff;
 }
 body[data-theme="heritage"] .check-mark { color: #0f1216; }
+
+/* =============================================================
+   Static SEO fallback content
+   ============================================================= */
+.seo-static {
+  background: var(--bg);
+  color: var(--ink);
+}
+.seo-static .page-hero {
+  padding-top: 132px;
+}
+.seo-static .home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 28px;
+}
+.seo-bullets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0;
+  margin: 32px 0 0;
+  list-style: none;
+}
+.seo-bullets li {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  padding: 18px 20px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.seo-faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.seo-faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  padding: 18px 20px;
+}
+.seo-faq-item summary {
+  cursor: default;
+  font-weight: 650;
+  color: var(--ink);
+}
+.seo-faq-item p {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+@media (max-width: 780px) {
+  .seo-static .page-hero { padding-top: 104px; }
+  .seo-bullets,
+  .seo-faq { grid-template-columns: 1fr; }
+}

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:seo": "node scripts/generate-seo-assets.mjs",
     "start": "node src/server.js"
   },
   "engines": {

@@ -17,8 +17,8 @@
                 <h1 className="home-hero-title reveal">{h.heroTitle}</h1>
                 <p className="home-hero-sub reveal">{h.heroSub}</p>
                 <div className="home-hero-actions reveal">
-                  <button className="btn btn-primary" onClick={() => go("cases")}>{h.heroCta1} →</button>
-                  <button className="btn btn-ghost" onClick={() => go("capabilities")}>{h.heroCta2}</button>
+                  <a className="btn btn-primary" href="/projects" onClick={(e) => { e.preventDefault(); go("cases"); }}>{h.heroCta1} →</a>
+                  <a className="btn btn-ghost" href="/capabilities" onClick={(e) => { e.preventDefault(); go("capabilities"); }}>{h.heroCta2}</a>
                 </div>
               </div>
               <div className="home-hero-media reveal">
@@ -46,9 +46,9 @@
               <div className="story-paragraphs">
                 <p className="reveal">{h.intro.body}</p>
                 <div className="reveal">
-                  <button className="btn btn-text" onClick={() => go("about")}>
+                  <a className="btn btn-text" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>
                     {lang === "cn" ? "阅读完整企业历程" : "Read the full company history"} <span className="arrow">→</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -69,9 +69,9 @@
               ))}
             </div>
             <div className="row reveal" style={{ marginTop: 32, justifyContent: "flex-end" }}>
-              <button className="btn btn-text" onClick={() => go("capabilities")}>
+              <a className="btn btn-text" href="/capabilities" onClick={(e) => { e.preventDefault(); go("capabilities"); }}>
                 {lang === "cn" ? "完整生产能力介绍" : "Full production capability"} <span className="arrow">→</span>
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -116,9 +116,9 @@
               </div>
             </div>
             <div className="row reveal" style={{ marginTop: 32, justifyContent: "flex-end" }}>
-              <button className="btn btn-text" onClick={() => go("cases")}>
+              <a className="btn btn-text" href="/projects" onClick={(e) => { e.preventDefault(); go("cases"); }}>
                 {h.featured.viewAll} <span className="arrow">→</span>
-              </button>
+              </a>
             </div>
           </div>
         </section>

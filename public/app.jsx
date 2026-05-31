@@ -75,12 +75,12 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
   }, []);
 
   const nav = [
-    { id: "home", label: t.nav.home },
-    { id: "about", label: t.nav.about },
-    { id: "capabilities", label: t.nav.capabilities },
-    { id: "cases", label: t.nav.cases },
-    { id: "quality", label: t.nav.quality },
-    { id: "contact", label: t.nav.contact },
+    { id: "home", label: t.nav.home, href: ROUTE_PATHS.home },
+    { id: "about", label: t.nav.about, href: ROUTE_PATHS.about },
+    { id: "capabilities", label: t.nav.capabilities, href: ROUTE_PATHS.capabilities },
+    { id: "cases", label: t.nav.cases, href: ROUTE_PATHS.cases },
+    { id: "quality", label: t.nav.quality, href: ROUTE_PATHS.quality },
+    { id: "contact", label: t.nav.contact, href: ROUTE_PATHS.contact },
   ];
 
   const go = (id) => {
@@ -93,7 +93,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
     <React.Fragment>
       <header className={"site-header" + (scrolled ? " scrolled" : "")}>
         <div className="container-wide nav-inner">
-          <a className="brand" href="#" onClick={(e) => { e.preventDefault(); go("home"); }} data-comment-anchor="brand">
+          <a className="brand" href="/" onClick={(e) => { e.preventDefault(); go("home"); }} data-comment-anchor="brand">
             <span className="brand-mark"><img src="assets/logo.png?v=huasheng-logo-20260525" alt="HuaSheng" /></span>
             <span className="brand-text">
               <span className="a">{t.brand.short}</span>
@@ -105,7 +105,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
             {nav.map((n) => (
               <a key={n.id}
                  className={"nav-link" + (route === n.id ? " active" : "")}
-                 href="#"
+                 href={n.href}
                  onClick={(e) => { e.preventDefault(); go(n.id); }}>
                 {n.label}
               </a>
@@ -117,7 +117,7 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
               <button className={lang === "cn" ? "on" : ""} onClick={() => setLang("cn")}>中</button>
               <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
             </div>
-            <a className="btn btn-primary" href="#" onClick={(e) => { e.preventDefault(); go("contact"); }}>
+            <a className="btn btn-primary" href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>
               {t.nav.cta} <span aria-hidden="true">→</span>
             </a>
             <button className="menu-btn" aria-label="Menu" onClick={() => setOpenMenu(!openMenu)}>
@@ -134,13 +134,13 @@ function Header({ route, setRoute, lang, setLang, theme, t, openMenu, setOpenMen
         {nav.map((n) => (
           <a key={n.id}
              className={"nav-link" + (route === n.id ? " active" : "")}
-             href="#"
+             href={n.href}
              onClick={(e) => { e.preventDefault(); go(n.id); }}>
             {n.label}
           </a>
         ))}
         <div className="mobile-actions">
-          <a className="btn btn-primary" href="#" onClick={(e) => { e.preventDefault(); go("contact"); }}>
+          <a className="btn btn-primary" href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>
             {t.nav.cta} →
           </a>
           <div className="row" style={{ justifyContent: "center" }}>
@@ -163,7 +163,7 @@ function Footer({ lang, t, setRoute }) {
       <div className="container-wide">
         <div className="footer-grid">
           <div className="footer-col brand-col">
-            <a className="brand" href="#" onClick={(e) => { e.preventDefault(); go("home"); }} style={{ marginBottom: 20 }}>
+            <a className="brand" href="/" onClick={(e) => { e.preventDefault(); go("home"); }} style={{ marginBottom: 20 }}>
               <span className="brand-mark"><img src="assets/logo.png?v=huasheng-logo-20260525" alt="HuaSheng" /></span>
               <span className="brand-text">
                 <span className="a">{t.brand.short}</span>
@@ -175,12 +175,12 @@ function Footer({ lang, t, setRoute }) {
           <div className="footer-col">
             <h4>{lang === "cn" ? "网站地图" : "Sitemap"}</h4>
             <ul>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("home"); }}>{t.nav.home}</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("about"); }}>{t.nav.about}</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("capabilities"); }}>{t.nav.capabilities}</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("cases"); }}>{t.nav.cases}</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("quality"); }}>{t.nav.quality}</a></li>
-              <li><a href="#" onClick={(e) => { e.preventDefault(); go("contact"); }}>{t.nav.contact}</a></li>
+              <li><a href="/" onClick={(e) => { e.preventDefault(); go("home"); }}>{t.nav.home}</a></li>
+              <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>{t.nav.about}</a></li>
+              <li><a href="/capabilities" onClick={(e) => { e.preventDefault(); go("capabilities"); }}>{t.nav.capabilities}</a></li>
+              <li><a href="/projects" onClick={(e) => { e.preventDefault(); go("cases"); }}>{t.nav.cases}</a></li>
+              <li><a href="/quality" onClick={(e) => { e.preventDefault(); go("quality"); }}>{t.nav.quality}</a></li>
+              <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>{t.nav.contact}</a></li>
             </ul>
           </div>
           <div className="footer-col">
@@ -205,7 +205,7 @@ function Footer({ lang, t, setRoute }) {
         </div>
         <div className="footer-bottom">
           <span>{t.brand.legal}</span>
-          <span>{lang === "cn" ? "粤 ICP 备 XXXXXXXX 号" : "ICP Filing No. XXXXXXXX"}</span>
+          <span>{lang === "cn" ? "中国 · 广东省 · 广州市" : "Guangzhou, Guangdong, China"}</span>
         </div>
       </div>
     </footer>

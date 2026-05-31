@@ -11,9 +11,14 @@ const appRoutes = new Set([
   "/about",
   "/capabilities",
   "/projects",
-  "/cases",
   "/quality",
   "/contact",
+]);
+const trailingSlashRoutes = new Set([
+  "/products/bus-shelters",
+  "/products/advertising-light-boxes",
+  "/products/metal-kiosks",
+  "/products/precision-metal-oem",
 ]);
 
 const contentTypes = new Map([
@@ -22,6 +27,9 @@ const contentTypes = new Map([
   [".js", "text/javascript; charset=utf-8"],
   [".jsx", "text/jsx; charset=utf-8"],
   [".json", "application/json; charset=utf-8"],
+  [".txt", "text/plain; charset=utf-8"],
+  [".xml", "application/xml; charset=utf-8"],
+  [".webmanifest", "application/manifest+json; charset=utf-8"],
   [".pdf", "application/pdf"],
   [".png", "image/png"],
   [".svg", "image/svg+xml; charset=utf-8"],
@@ -54,6 +62,13 @@ async function serveFile(response, filePath) {
   }
 }
 
+async function serveAppRoute(response, pathname) {
+  const routeFile = pathname === "/"
+    ? "index.html"
+    : path.join(pathname.slice(1), "index.html");
+  await serveFile(response, routeFile);
+}
+
 const server = http.createServer(async (request, response) => {
   if (request.url === "/health") {
     response.writeHead(200, { "content-type": "application/json" });
@@ -62,13 +77,38 @@ const server = http.createServer(async (request, response) => {
   }
 
   const url = new URL(request.url || "/", `http://${request.headers.host}`);
-
-  if (appRoutes.has(url.pathname)) {
-    await serveFile(response, "index.html");
+  const host = request.headers.host || "";
+  const forwardedProto = request.headers["x-forwarded-proto"];
+  if (host.startsWith("www.") || forwardedProto === "http") {
+    const canonicalHost = host.replace(/^www\./, "") || "hua-sheng.org";
+    response.writeHead(301, {
+      location: `https://${canonicalHost}${url.pathname}${url.search}`,
+    });
+    response.end();
     return;
   }
 
-  await serveFile(response, url.pathname.slice(1));
+  if (url.pathname === "/cases") {
+    response.writeHead(301, { location: "/projects" });
+    response.end();
+    return;
+  }
+
+  if (trailingSlashRoutes.has(url.pathname)) {
+    response.writeHead(301, { location: `${url.pathname}/` });
+    response.end();
+    return;
+  }
+
+  if (appRoutes.has(url.pathname)) {
+    await serveAppRoute(response, url.pathname);
+    return;
+  }
+
+  const filePath = url.pathname.endsWith("/")
+    ? path.join(url.pathname.slice(1), "index.html")
+    : url.pathname.slice(1);
+  await serveFile(response, filePath);
 });
 
 server.listen(port, "0.0.0.0", () => {

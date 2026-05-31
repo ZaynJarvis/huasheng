@@ -6,7 +6,7 @@ window.HS_CONTENT = {
     brand: {
       short: "华盛金属",
       full: "广州华盛金属材料有限公司",
-      legal: "© 2025 广州华盛金属材料有限公司 版权所有",
+      legal: "© 2026 广州华盛金属材料有限公司 版权所有",
       tagline: "30 年金属精工，匠造城市公共器物",
     },
     nav: {
@@ -80,7 +80,7 @@ window.HS_CONTENT = {
     about: {
       hero: {
         eyebrow: "关于我们",
-        title: "三十六年，一家广州金属工厂的来路",
+        title: "三十七年，一家广州金属工厂的来路",
         sub: "我们不是最大的金属加工厂，但我们大概是把候车亭这件事做得最久的工厂之一。",
       },
       story: {
@@ -91,7 +91,7 @@ window.HS_CONTENT = {
           "2001 年，与 IKEA 宜家建立 OEM 合作关系，年营业额突破 5000 万美元，从此走上国际化代工与自主项目并行的路线。",
           "2008 年，承接北京奥运场馆不锈钢候车亭项目，工程量达 1272.3 万元。同期项目延伸至上海、杭州、鄂尔多斯等城市。",
           "近十年，业务版图从国内走向海外，落地卡塔尔、香港、罗马尼亚、沙特、土库曼斯坦、土耳其、尼泊尔、新西兰、阿曼、韩国等四十余个国家。",
-          "今天，华盛在广州拥有约 50,000 平方米的金属加工厂房，5 大加工车间，297 台精密设备，600 余名一线员工，30 人设计与技术团队。我们仍在建新厂房。",
+          "今天，华盛在广州拥有约 50,000 平方米核心金属加工厂房，生产基地总面积约 120,000 平方米，5 大加工车间，297 台精密设备，600 余名一线员工，30 人设计与技术团队。我们仍在建新厂房。",
         ],
       },
       milestones: {
@@ -154,7 +154,7 @@ window.HS_CONTENT = {
         title: "重点设备",
         sub: "297 台设备中，覆盖从切割、成型到表面的所有关键工序。",
         items: [
-          "400W 激光切割机",
+          "激光切割机",
           "机器人自动焊接工作站",
           "数字化自动喷涂线",
           "CNC 折弯机 / 剪板机",
@@ -283,7 +283,7 @@ window.HS_CONTENT = {
     brand: {
       short: "HUASHENG",
       full: "Guangzhou HuaSheng Metal Materials Co., Ltd.",
-      legal: "© 2025 Guangzhou HuaSheng Metal Materials Co., Ltd. All Rights Reserved.",
+      legal: "© 2026 Guangzhou HuaSheng Metal Materials Co., Ltd. All Rights Reserved.",
       tagline: "30 Years of Metal Craft for Public Cityscapes",
     },
     nav: {
@@ -341,7 +341,7 @@ window.HS_CONTENT = {
     about: {
       hero: {
         eyebrow: "About us",
-        title: "Thirty-six years of a Guangzhou metal workshop",
+        title: "Thirty-seven years of a Guangzhou metal workshop",
         sub: "We are not the biggest metal fabricator in China, but probably the one that has been making bus shelters the longest.",
       },
       story: {
@@ -352,7 +352,7 @@ window.HS_CONTENT = {
           "2001. An OEM relationship with IKEA begins. Annual turnover crosses USD 50 million. From then on, two business lines run in parallel: OEM manufacturing and our own public-furniture projects.",
           "2008. HuaSheng delivers the stainless steel bus shelter project around Beijing Olympic venues — a contract worth RMB 12.72 million. Similar projects follow in Shanghai, Hangzhou and Erdos.",
           "Last decade. We move from domestic to overseas: Qatar, Hong Kong, Romania, Saudi Arabia, Turkmenistan, Turkey, Nepal, New Zealand, Oman, Korea — over 40 countries.",
-          "Today. About 50,000 m² of metal fabrication floor in Guangzhou, five workshops, 297 precision machines, 600+ frontline workers, 30 designers and engineers. We are building a new workshop right now.",
+          "Today. About 50,000 m² of core metal fabrication floor in Guangzhou, about 120,000 m² total production base, five workshops, 297 precision machines, 600+ frontline workers, 30 designers and engineers. We are building a new workshop right now.",
         ],
       },
       milestones: {
@@ -414,7 +414,7 @@ window.HS_CONTENT = {
       equipment: {
         title: "Key equipment",
         sub: "297 machines covering every critical step from cutting to finishing.",
-        items: ["400W laser cutter", "Robotic auto-welding cells", "Digital auto-spray line", "CNC bending / shearing", "CNC punching machines", "Tube bender / slotter", "Water jet cutter", "Electrophoresis pre-treatment line"],
+        items: ["Laser cutting systems", "Robotic auto-welding cells", "Digital auto-spray line", "CNC bending / shearing", "CNC punching machines", "Tube bender / slotter", "Water jet cutter", "Electrophoresis pre-treatment line"],
       },
       process: {
         title: "Standard process",
